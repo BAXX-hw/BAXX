@@ -1,0 +1,74 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url('../images/bg2.jpg') no-repeat;
+}
+
+.menu {
+    width: 9%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.level_choosing {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.menu_item {
+    width: 70%;
+    padding-top: 70%;
+    /* border-radius: 50%; */
+    margin: 10px;
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.menu_item:hover {
+    transform: scale(1.15);
+}
+
+.avatar {
+    background: url('../images/avatar.png');
+    background-size: cover;
+}
+
+.announcement {
+    background: url('../images/announcement.png');
+    background-size: cover;
+}
+
+.ranking_list {
+    background: url('../images/ranking_list.png');
+    background-size: cover;
+}
+
+.feedback {
+    background: url('../images/feedback.png');
+    background-size: cover;
+}
+
+.setting {
+    background: url('../images/setting.png');
+    background-size: cover;
+}
+
+.mapping {
+    width: 1286px;
+    height: 750px;
+}
