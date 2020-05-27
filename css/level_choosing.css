@@ -10,7 +10,7 @@ body {
     width: 100%;
     height: 100%;
     position: absolute;
-    background-image: url('../images/bg.jpg');
+    background: url('../images/bg2.jpg') no-repeat;
 }
 
 .menu {
@@ -26,14 +26,14 @@ body {
     width: 90%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .menu_item {
     width: 70%;
     padding-top: 70%;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     margin: 10px;
     cursor: pointer;
     transition: transform .3s;
@@ -44,27 +44,31 @@ body {
 }
 
 .avatar {
-    background-color: seagreen;
+    background: url('../images/avatar.png');
+    background-size: cover;
 }
 
 .announcement {
-    background-color: sienna;
+    background: url('../images/announcement.png');
+    background-size: cover;
 }
 
 .ranking_list {
-    background-color: slateblue;
+    background: url('../images/ranking_list.png');
+    background-size: cover;
 }
 
 .feedback {
-    background-color: rosybrown;
+    background: url('../images/feedback.png');
+    background-size: cover;
 }
 
 .setting {
-    background-color: deepskyblue;
+    background: url('../images/setting.png');
+    background-size: cover;
 }
 
 .mapping {
-    width: 1200px;
-    height: 700px;
-    background-color: firebrick;
+    width: 1286px;
+    height: 750px;
 }
