@@ -5,22 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./css/adm.css" rel="external nofollow">
-    <script src="js/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="./public/css/adm.css" rel="external nofollow">
+    <script src="./public/js/jquery-3.5.1.min.js"></script>
     <title>不爱学习管理员登录</title>
 </head>
 
 <body>
     <div class="content">
-        <div class="pop_head">
-        </div>
-        <form class="loginForm" action="">
-            <input class="login_txt" type="text" name="username" placeholder="用户名">
-            <input class="login_txt" type="password" name="password" placeholder="密码">
-            <input class="login_submit" type="submit" value="登录">
+        <form class="loginForm" id="admLogin" action="">
+            <input class="login_txt" id="username" type="text" name="username" placeholder="用户名">
+            <input class="login_txt" id="password" type="password" name="password" placeholder="密码">
+            <button class="login_submit" type="button" value="登录">登录</button>
+            <!-- <input class="login_submit" type="submit" value="登录"> -->
         </form>
     </div>
-    <script src="js/adm.js"></script>
+    <script src="./public/js/adm.js"></script>
     <footer>
         <p>提示：仅限管理员登录</p>
     </footer>
