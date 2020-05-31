@@ -170,7 +170,7 @@ form > input:first-child {
     margin: 4px;
 }
 
-input[type=submit] {
+input[type=button] {
     width: 150px;
     height: 75px;
     background-size: 100% 100%;
@@ -189,11 +189,11 @@ input[type=submit] {
     margin: 4px;
 }
 
-input[type=submit]:hover {
+input[type=button]:hover {
     transform: scale(1.1);
 }
 
-input[type=submit]:active {
+input[type=button]:active {
     transform: scale(1);
     transition: transform .1s;
 }

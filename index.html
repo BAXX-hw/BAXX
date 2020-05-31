@@ -25,9 +25,9 @@
             <div class="closeBtn login_close"></div>
         </div>
         <form class="loginForm" action="">
-            <input class="login_txt" type="text" name="username" placeholder="用户名">
-            <input class="login_txt" type="password" name="password" placeholder="密码">
-            <input class="login_submit" type="submit" value="">
+            <input class="login_txt" type="text" name="username" id="log_username" placeholder="用户名" autocomplete="off">
+            <input class="login_txt" type="password" name="password" id="log_password" placeholder="密码" autocomplete="off">
+            <input class="login_submit" type="button" value="">
         </form>
     </div>
     <div class="pop_tab register_tab">
@@ -35,10 +35,10 @@
             <div class="closeBtn register_close"></div>
         </div>
         <form class="registerForm" action="">
-            <input class="register_txt" type="text" name="username" placeholder="4到10位数字或字母">
-            <input class="register_txt" type="password" name="password" placeholder="8到16位数字或字母">
-            <input class="register_txt" type="password" name="password" placeholder="重复你的密码">
-            <input class="register_submit" type="submit" value="">
+            <input class="register_txt" type="text" name="username" id="reg_username" placeholder="用户名：4到10位数字或字母" autocomplete="off">
+            <input class="register_txt" type="password" name="password" id="reg_password" placeholder="密码：8到16位数字或字母" autocomplete="off">
+            <input class="register_txt" type="password" name="password_confirm" id="reg_password_confirm" placeholder="请重复你的密码" autocomplete="off">
+            <input class="register_submit" type="button" value="">
         </form>
     </div>
     <script src="public/js/index.js"></script>
