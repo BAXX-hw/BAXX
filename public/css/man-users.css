@@ -1,15 +1,35 @@
+.search {
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 12px;
+}
 
 #mysearch {
     background-image: url('../images/searchicon.png'); 
     background-position: 10px 12px; 
     background-repeat: no-repeat; 
-    float: right;
     width: 30%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
-    margin-bottom: 12px; 
-    
+}
+
+.searchbtn {
+    width: auto;
+    height: auto;
+    font-size: 16px;
+    padding: 10px 20px 10px 20px;
+    margin-left: 20px;
+    border: 1px solid #ddd;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.searchbtn:hover {
+    background-color: #ddd;
 }
 
 #m-users-table {

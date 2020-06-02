@@ -2,6 +2,8 @@ const mysql = require('mysql');
 var dbConfig = require('./db/DBConfig');
 var admSQL = require('./db/AdminSQL');
 var userSQL = require('./db/UserSQL');
+var playerbasicinfoSQL = require('./db/PlayerBasicInfoSQL');
+var playergameinfoSQL = require('./db/PlayerGameInfoSQL');
 var express = require('express');
 var app = express();
 
@@ -24,6 +26,26 @@ app.use(bodyParser.xml(),
 
 app.get('/admin', function (req, res) {
     res.sendFile(__dirname + "/" + "adm.html");
+})
+
+app.get('/admin_house', function (req, res) {
+    res.sendFile(__dirname + '/' + 'manager.html');
+})
+
+app.get('/man_home.html', function (req, res) {
+    res.sendFile(__dirname + '/' + 'man_home.html');
+})
+
+app.get('/man_users.html', function (req, res) {
+    res.sendFile(__dirname + '/' + 'man_users.html');
+})
+
+app.get('/man_announcement.html', function (req, res) {
+    res.sendFile(__dirname + '/' + 'man_announcement.html');
+})
+
+app.get('/man_feedback.html', function (req, res) {
+    res.sendFile(__dirname + '/' + 'man_feedback.html');
 })
 
 app.get('/index', function (req, res) {
@@ -51,7 +73,7 @@ app.post('/admlogin', function (req, res) {
         let param = req.body;
         let UserName = param.username;
         let Password = param.password;
-        console.log(UserName, Password);
+        // console.log(UserName, Password);
 
         connection.query(admSQL.queryAll, function (err, result) {
             let isTrue = false;
@@ -127,7 +149,39 @@ app.post('/reg', function (req, res) {
                         }
                     }
                     else {
-                        console.log(result);
+                        // console.log(result);
+                        data.result = {
+                            code: 200,
+                            msg: '注册成功'
+                        }
+                    }
+                })
+                connection.query(playerbasicinfoSQL.insert, [UserName, '一个萌新', '来自天外','这个用户很懒，什么也没有留下'], function (err, result) {
+                    if (err) {
+                        data.err = err;
+                        data.result = {
+                            code: 500,
+                            msg: '注册失败'
+                        }
+                    }
+                    else {
+                        // console.log(result);
+                        data.result = {
+                            code: 200,
+                            msg: '注册成功'
+                        }
+                    }
+                })
+                connection.query(playergameinfoSQL.insert, [UserName, 0, 0], function (err, result) {
+                    if (err) {
+                        data.err = err;
+                        data.result = {
+                            code: 500,
+                            msg: '注册失败'
+                        }
+                    }
+                    else {
+                        // console.log(result);
                         data.result = {
                             code: 200,
                             msg: '注册成功'
@@ -161,7 +215,7 @@ app.post('/login', function (req, res) {
         let param = req.body;
         let UserName = param.username;
         let Password = param.password;
-        console.log(UserName, Password);
+        // console.log(UserName, Password);
 
         connection.query(userSQL.getUserByName, UserName, function (err, result) {
             let isTrue = false;
@@ -204,3 +258,45 @@ app.post('/login', function (req, res) {
         });
     });
 });
+
+app.get('/searchname', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let UserName = '%' + param.search + '%';
+
+        let searchSQL=`SELECT a.*, SUM(b.P_score) AS totalScore 
+                       FROM PlayerBasicInfo a INNER JOIN PlayerGameInfo b ON a.username=b.username 
+                       WHERE a.username LIKE ? 
+                       GROUP BY b.username` ;
+        
+        connection.query(searchSQL, UserName, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '查询失败'
+                }
+            }
+            else {
+                console.log(result);
+                data.searching = result;
+                data.result = {
+                    code: 200,
+                    msg:'查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: '500',
+                    msg: '登录失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})

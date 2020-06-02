@@ -10,7 +10,7 @@ $('.login_submit').on('click', function (){
         success: function (data) {
             // console.log(data);
             if (data.isLogin) {
-                window.location.href='index';
+                window.location.href='admin_house';
             }
             else
             {
