@@ -1,0 +1,39 @@
+body {
+  margin: 10px;
+  background-color:  rgb(198, 237, 255);
+}
+.adm-card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 20%;
+  float: left;
+  border-radius: 5px;
+  background-color: none;
+}
+
+.adm-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.container {
+  padding: 2px 16px;
+  text-align: center;
+  background-color: white;
+}
+table {
+   font-family: monospace;
+   font-size: 2.3em;
+   float :right;
+   width: 75%;
+   border:0;
+   border-color: rgb(109, 106, 106);
+   background-color:  rgb(198, 237, 255);
+
+}
+.tag {
+  padding-right: 10px;
+}

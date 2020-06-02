@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员界面</title>
+    <link rel="stylesheet" href="./css/manager.css" rel="external nofollow">
+    <script src="js/manager.js"></script>
+</head>
+
+<body>
+    <div class="top-container">
+        <div class="container-inner">
+            <img class="logo" src="./images/logo.png" alt="找不到该图片！">
+            <span class="header">不爱学习APP后台管理系统</span>
+            <span class="hello">你好！</span>
+            <a title="登录信息" href="#">
+                <u class="administrator">王燕</u>
+            </a>
+            <a class="leave" href="#left" target="-top" onclick="alert('确认退出？')">退出</a>
+        </div>
+
+
+    </div class="left-column">
+    <ul>
+        <li><a title="个人主页" onclick="changeSrc(1)">个人主页</a></li>
+        <li><a title="用户管理" onclick="changeSrc(2)">用户管理</a></li>
+        <li><a title="公告管理" onclick="changeSrc(3)">公告管理</a></li>
+        <li><a title="反馈管理" onclick="changeSrc(4)">反馈管理</a></li>
+    </ul>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <iframe id="myframe" src="./man_home.html" frameborder="none" ></iframe>
+    <script>
+        document.getElementById("myframe").align = "right";
+    </script>
+    </div>
+</body>
+
+</html>
+</body>
+
+</html>

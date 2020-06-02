@@ -1,0 +1,43 @@
+
+#mysearch {
+    background-image: url('../images/searchicon.png'); 
+    background-position: 10px 12px; 
+    background-repeat: no-repeat; 
+    float: right;
+    width: 30%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px; 
+    
+}
+
+#m-users-table {
+    border-collapse: collapse; 
+    width: 100%; 
+    border: 1px solid #ddd;
+    font-size: 18px; 
+   
+}
+
+#m-users-table th, #m-users-table td {
+    text-align: left;
+    padding: 12px; 
+    text-align: center;
+}
+
+#m-users-table tr {
+    /* 表格添加边框 */
+    border-bottom: 1px solid #ddd; 
+}
+
+#mym-users-table tr.headers, #m-users-table tr:hover {
+    /* 表头及鼠标移动过 tr 时添加背景 */
+    background-color: #f1f1f1;
+}
+
+.button{
+    width: 50px;
+    height: 30px;
+    margin-left: 20px;
+}
