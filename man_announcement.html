@@ -1,16 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./public/css/man-announcement.css" rel="external nofollow">
 </head>
+
 <body>
-    <h1>这里是用户管理</h1>
-    <h1>这里是用户管理</h1>
-    <h1>这里是用户管理</h1>
-    <h1>这里是信息管理</h1>
-    <h1>这里是用户管理</h1>
-    <h1>这里是用户管理</h1>
+    <!-- 搜索框 -->
+    <input type="text" id="mysearch" οnkeyup="onSearch()" placeholder="请输入您要搜索的内容..." title="输入用户名">
+    <!-- 新添公告 -->
+    <button class = "add-btn" onclick="document.getElementById('modalid').style.display='block'"
+        style="width:auto;">新添公告</button>
+    <div id="modalid" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="closecontainer">
+                <span onclick="document.getElementById('modalid').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+            </div>
+
+            <div class="container">
+                <label><b>标题</b></label>
+                <input type="text" placeholder="添加标题....." name="a-head" required>
+
+                <label><b>公告内容</b></label>
+                <textarea name="a-content" placeholder="添加内容....." required ></textarea>
+
+                <button type="submit">提交</button>
+        
+            </div>
+
+        </form>
+    </div>
+    <!-- 反馈信息 -->
+    <table id="m-anm-table" border="1">
+        <tr class="headers">
+            <th>序号</th>
+            <th>标题</th>
+            <th>公告内容</th>
+            <th>添加时间</th>
+            <th>操作</th>
+
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>whhk</td>
+            <td>七柒</td>
+            <td>123321123</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>wzhk</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>dews</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>cdsa</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>xcddddddd</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>xcddddddd</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>xcddddddd</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>xcddddddd</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>xcddddddd</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>xcddddddd</td>
+            <td>七毛</td>
+            <td>88888888</td>
+            <td><input type="button" class="button" value="删除" title="删除该公告"><input type="button" class="button"
+                    value="编辑" title="编辑该公告"></td>
+        </tr>
+    </table>
 </body>
+
+<script src="./public/js/man-announcement.js"></script>
+
 </html>
