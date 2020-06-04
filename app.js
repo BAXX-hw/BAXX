@@ -4,6 +4,7 @@ var admSQL = require('./db/AdminSQL');
 var userSQL = require('./db/UserSQL');
 var playerbasicinfoSQL = require('./db/PlayerBasicInfoSQL');
 var playergameinfoSQL = require('./db/PlayerGameInfoSQL');
+var announcementSQL = require('./db/AnnouncementSQL');
 var express = require('express');
 var app = express();
 
@@ -279,11 +280,118 @@ app.get('/searchname', function (req, res) {
                 }
             }
             else {
-                console.log(result);
+                // console.log(result);
                 data.searching = result;
                 data.result = {
                     code: 200,
                     msg:'查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: '500',
+                    msg: '登录失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/ann_add', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let Title = param.title;
+        let Detail = param.detail;
+
+        connection.query(announcementSQL.insert, [Title, Detail], function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '插入失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.result = {
+                    code: 200,
+                    msg:'插入成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: '500',
+                    msg: '插入失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/ann_load', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        connection.query(announcementSQL.queryAllByTime, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '查询失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.searching = result;
+                data.result = {
+                    code: 200,
+                    msg:'查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: '500',
+                    msg: '登录失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/ann_del', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let ID = param.AnnID;
+
+        connection.query(announcementSQL.deleteAnn, ID, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '删除失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.result = {
+                    code: 200,
+                    msg:'删除成功'
                 }
             }
 

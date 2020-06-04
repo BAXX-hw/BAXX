@@ -16,7 +16,7 @@ $(function () {
         $('.register_tab').hide();
     })
     $('.login_submit').on('click', function () {
-        var form = {
+        let form = {
             "username": $('#log_username').val(),
             "password": $('#log_password').val()
         };

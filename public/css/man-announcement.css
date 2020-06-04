@@ -1,15 +1,22 @@
+.searchblank {
+    display: flex;
+    width: auto;
+    height: auto;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
 /*  搜索框*/
 #mysearch {
     background-image: url('../images/searchicon.png'); 
     background-position: 10px 12px; 
     background-repeat: no-repeat; 
-    float: left;
     width: 30%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
     border: 1px solid #ddd;
-    margin-bottom: 12px; 
-    
+    margin: 0;
 }
 
 /* 表 */
@@ -73,7 +80,7 @@ textarea {
 button {
     background-color: rgb(255, 158, 158);
     color: white;
-    padding: 14px 20px;
+    padding: 10px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
@@ -87,6 +94,8 @@ button:hover {
 .add-btn{
     margin-left: 10px;
     height:42px;
+    margin: 0 0 0 20px;
+    border-radius: 4px;
 }
 
 /* 关闭 */

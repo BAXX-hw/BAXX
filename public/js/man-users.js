@@ -19,7 +19,7 @@ $(function () {
       success: function (data) {
         // console.log(data.searching);
         let result = document.createElement('tbody');
-        console.log(data.searching.length);
+        // console.log(data.searching.length);
         for (let i = 0; i < data.searching.length; i++) {
           let tr = document.createElement('tr');
           let td = new Array;
