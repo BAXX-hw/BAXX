@@ -14,8 +14,9 @@
 
 /* 表头背景 */
 #m-fdb-table th {
-    background-color: cadetblue;
-}users
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 132, 255);
+}
 
 #m-fdb-table tr {
     /* 表格添加边框 */
@@ -30,4 +31,24 @@
 img {
     width: 25px;
     height: 25px;
+}
+.button{
+    background-image: linear-gradient(rgb(84, 192, 11),rgb(29, 119, 29));
+    border: none;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.button1 {
+    background-image: linear-gradient(rgb(247, 114, 114),rgb(192, 4, 4));
+    border: none;
+    width: 50px;
+    margin-left: 10px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+button:hover {
+    opacity: 0.8;
 }

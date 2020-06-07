@@ -1,6 +1,6 @@
 body {
   margin: 10px;
-  background-color:  rgb(198, 237, 255);
+  background-color:  rgb(255, 255, 255);
 }
 .adm-card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -31,7 +31,7 @@ table {
    width: 75%;
    border:0;
    border-color: rgb(109, 106, 106);
-   background-color:  rgb(198, 237, 255);
+   background-color:  rgb(255, 255, 255);
 
 }
 .tag {

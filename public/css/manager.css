@@ -1,14 +1,15 @@
 body {
     margin: 10px;
     overflow:hidden;
-    background-color: rgb(198, 237, 255);
+    background-color: rgb(194, 194, 194);
 }
 
 .container-inner{
-    background-color:rgb(244,154,193);
+    /* background-image: linear-gradient(rgba(38, 255, 255, 0.884),rgba(77, 234, 255, 0.774),rgba(79, 205, 255, 0.856)); */
+    background-color: rgb(26, 66, 90);
     padding: 15px;
     border: rgb(110, 204, 211);
-    border-radius: 1.5em;
+    /* border-radius: 1.5em; */
     width: 100%;
     position: fixed;
 }
@@ -22,10 +23,11 @@ body {
 
 .header{
     font-size:25px;
-    color: rgb(7, 7, 7);
+    color: rgb(255, 255, 255);
     font-style: unset ;
     font-weight: bold;
     line-height: 35px;
+    font-family: monospace;
     text-align: center;
 }
 
@@ -65,40 +67,36 @@ a.leave:active{
 }
 ul {
     list-style-type: none;
-    margin-top:125px;
+    margin-top:115px;
     padding: 0;
     width: 15%;
-    background-color: rgb(244,154,193);
-    /* border:3px;
-    border-style: double;
-    border-color: brown; */
-    border-radius: 1em;
+    /* background-image: linear-gradient(rgba(3, 250, 217, 0.884),rgba(77, 234, 255, 0.904),rgb(17, 148, 255)); */
+    background-color: rgb(26, 66, 90);
+    /* border-radius: 1em; */
     position: fixed;
-    height: 80%;
+    height: 100%;
     overflow: auto;
    
 }
 
 li a {
     display: block;
-    background-color: rgb(244,154,193);
-    color: #000;
+    background-color: none;
+    color: rgb(255, 255, 255);
     padding: 8px 16px;
     text-decoration: none;
+    text-align: center;
+    font-size: 1.5em;
+    font-family: monospace;
     margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
     border: 5px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 li a:hover{
-    background-color: MediumOrchid;
-    color: white;
-}
-
-li a:active {
-    background-color: MediumOrchid;
+    background-image: linear-gradient(rgb(2, 131, 182),rgb(11, 75, 117));
     color: white;
 }
 
@@ -108,5 +106,5 @@ iframe {
     /* border:3px;
     border-style: double;
     border-color: brown; */
-    border-radius: 1em;
+    /* border-radius: 1em; */
 }
