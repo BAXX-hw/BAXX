@@ -6,16 +6,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="public/css/level_choosing.css" rel="external nofollow">
+    <script src="public/js/jquery-3.5.1.min.js"></script>
     <title>不爱学习</title>
 </head>
 
 <body>
     <div class="menu">
-        <div class="menu_item avatar"></div>
-        <div class="menu_item announcement"></div>
-        <div class="menu_item ranking_list"></div>
-        <div class="menu_item feedback"></div>
-        <div class="menu_item setting"></div>
+        <div class="btn avatar"><button></button></div>
+        <div class="btn announcement"><button></button></div>
+        <div class="btn ranking_list"><button></button></div>
+        <div class="btn feedback"><button></button></div>
+        <div class="btn setting"><button></button></div>
+    </div>
+    <div class="pop_tab avatar_tab">
+        <div class="pop_head">
+            <div class="closeBtn avatar_close"></div>
+        </div>
+        <table id="avatar-table" font-color="red">
+            <tr>
+                <td width="200px" height="30px">昵 称:</td>
+                <td>
+                    <h>无敌小仙女</h>
+                </td>
+            </tr>
+            <tr>
+                <td height="30px">性 别:</td>
+                <td>
+                    <h>女</h>
+                </td>
+            </tr>
+            <tr>
+                <td height="85px">个人简介:</td>
+                <td>
+                    <p>这个人很懒</p>
+                </td>
+            </tr>
+        </table>
+        <div class="admBtn">
+            <div class="btn compile"><button></button></div>
+        </div>
+    </div>
+    <div class="pop_tab announcement_tab">
+        <div class="pop_head">
+            <div class="closeBtn announcement_close"></div>
+        </div>
+        <table id="ann-table" border="1">
+            <tr class="headers">
+                <th width="120px">标题</th>
+                <th>公告内容</th>
+                <th width="50px">操作</th>
+            </tr>
+            <tr>
+                <td>我是标题</td>
+                <td>八百标兵奔北坡,炮兵并排北边跑。 炮兵怕把标兵碰,标兵怕碰炮兵炮。</td>
+                <td><div class="btn seeBtn"><button>查看</button></div></td>
+            </tr>
+        </table>
+    </div>
+    <div class="seeBtn_tab">
+        <div class="pop_head">
+            <div class="closeBtn seeBtn_close"></div>
+        </div>
+        <div class="ann-txt">八百标兵奔北坡,炮兵并排北边跑。 炮兵怕把标兵碰,标兵怕碰炮兵炮。</div>
+    </div>
+    <div class="pop_tab ranking_tab">
+        <div class="pop_head">
+            <div class="closeBtn ranking_close"></div>
+        </div>
+        <table id="rank-table" border="1">
+            <tr>
+                <th>排名</th>
+                <th>用户名</th>
+                <th>积分</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>无敌小仙女</td>
+                <td>99</td>
+            </tr>
+        </table>
+    </div>
+    <div class="pop_tab feedback_tab">
+        <div class="pop_head">
+            <div class="closeBtn feedback_close"></div>
+        </div>
+        <div>
+            <textarea class="feedback-txt" placeholder="添加内容....."></textarea>
+            <div class="btn commit"><button></button></div>
+        </div>
+    </div>
+    <div class="pop_tab setting_tab">
+        <div class="pop_head">
+            <div class="closeBtn setting_close"></div>
+        </div>
     </div>
     <div class="level_choosing">
         <img class="mapping" src="public/images/level.png" alt="level_choosing" usemap="#levelmap" hidefocus="true">
@@ -36,6 +119,7 @@
             <area shape="circle" coords="1061,163,25" href="game.html" alt="level14" onfocus="blur(this);">
         </map>
     </div>
+    <script src="public/js/level_choosing.js"></script>
 </body>
 
 </html>
