@@ -26,24 +26,25 @@
             <tr>
                 <td width="200px" height="30px">昵 称:</td>
                 <td>
-                    <h>无敌小仙女</h>
+                    <h class="name">无敌小仙女</h>
                 </td>
             </tr>
             <tr>
                 <td height="30px">性 别:</td>
                 <td>
-                    <h>女</h>
+                    <h class="sex">女</h>
                 </td>
             </tr>
             <tr>
                 <td height="85px">个人简介:</td>
                 <td>
-                    <p>这个人很懒</p>
+                    <h class="intro">这个人很懒</h>
                 </td>
             </tr>
         </table>
         <div class="admBtn">
-            <div class="btn compile"><button></button></div>
+            <div class="btn save"><button></button></div>
+            <div class="btn compile"><button></button></div>    
         </div>
     </div>
     <div class="pop_tab announcement_tab">
@@ -99,27 +100,33 @@
         <div class="pop_head">
             <div class="closeBtn setting_close"></div>
         </div>
+        <div class="btnexit">
+            <button class="exit">退出登陆</button>
+        </div>
     </div>
     <div class="level_choosing">
         <img class="mapping" src="public/images/level.png" alt="level_choosing" usemap="#levelmap" hidefocus="true">
         <map name="levelmap">
-            <area shape="circle" coords="345,164,33" href="game.html" alt="level1" onfocus="blur(this);">
-            <area shape="circle" coords="415,304,33" href="game.html" alt="level2" onfocus="blur(this);">
-            <area shape="circle" coords="507,336,28" href="game.html" alt="level3" onfocus="blur(this);">
-            <area shape="circle" coords="483,514,30" href="game.html" alt="level4" onfocus="blur(this);">
-            <area shape="circle" coords="565,525,29" href="game.html" alt="level5" onfocus="blur(this);">
-            <area shape="circle" coords="690,461,26" href="game.html" alt="level6" onfocus="blur(this);">
-            <area shape="circle" coords="841,558,27" href="game.html" alt="level7" onfocus="blur(this);">
-            <area shape="circle" coords="1070,577,26" href="game.html" alt="level8" onfocus="blur(this);">
-            <area shape="circle" coords="1180,452,26" href="game.html" alt="level9" onfocus="blur(this);">
-            <area shape="circle" coords="967,405,28" href="game.html" alt="level10" onfocus="blur(this);">
-            <area shape="circle" coords="805,375,27" href="game.html" alt="level11" onfocus="blur(this);">
-            <area shape="circle" coords="887,259,27" href="game.html" alt="level12" onfocus="blur(this);">
-            <area shape="circle" coords="1017,304,21" href="game.html" alt="level13" onfocus="blur(this);">
-            <area shape="circle" coords="1061,163,25" href="game.html" alt="level14" onfocus="blur(this);">
+            <area shape="circle" coords="345,164,33" href="level1.html" alt="level1" onfocus="blur(this);">
+            <area shape="circle" coords="415,304,33" href="level2.html" alt="level2" onfocus="blur(this);">
+            <area shape="circle" coords="507,336,28" href="level3.html" alt="level3" onfocus="blur(this);">
+            <area shape="circle" coords="483,514,30" href="level4.html" alt="level4" onfocus="blur(this);">
+            <area shape="circle" coords="565,525,29" href="level5.html" alt="level5" onfocus="blur(this);">
+            <area shape="circle" coords="690,461,26" href="level6.html" alt="level6" onfocus="blur(this);">
+            <area shape="circle" coords="841,558,27" href="level7.html" alt="level7" onfocus="blur(this);">
+            <area shape="circle" coords="1070,577,26" href="level8.html" alt="level8" onfocus="blur(this);">
+            <area shape="circle" coords="1180,452,26" href="level9.html" alt="level9" onfocus="blur(this);">
+            <area shape="circle" coords="967,405,28" href="level10.html" alt="level10" onfocus="blur(this);">
+            <area shape="circle" coords="805,375,27" href="level11.html" alt="level11" onfocus="blur(this);">
+            <area shape="circle" coords="887,259,27" href="level12.html" alt="level12" onfocus="blur(this);">
+            <area shape="circle" coords="1017,304,21" href="level13.html" alt="level13" onfocus="blur(this);">
+            <area shape="circle" coords="1061,163,25" href="level14.html" alt="level14" onfocus="blur(this);">
         </map>
     </div>
     <script src="public/js/level_choosing.js"></script>
 </body>
-
+<select>
+    <option value="volvo">男</option>
+    <option value="saab">女</option>
+</select>
 </html>

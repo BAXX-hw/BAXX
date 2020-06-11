@@ -113,7 +113,11 @@ body {
     display: none;
     z-index: 9999;
 }
-
+.btnexit{
+	position:absolute;
+	top:80%;
+    left:45%;
+} 
 .pop_head {
     display: flex;
     justify-content: flex-end;
@@ -141,12 +145,18 @@ body {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
 }
 
+.save button {
+    width: 360px;
+    height: 280px;
+    margin-left: 45%;
+    background-image: url('../images/save.png');
+}
 .compile button {
     width: 360px;
     height: 280px;
+    margin-left: -55%;
     background-image: url('../images/compile.png');
 }
 input {

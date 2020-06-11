@@ -1,7 +1,7 @@
-var sw = 20, // 一个方块的宽度
-    sh = 20, // 高度
-    tr = 30, // 行数
-    td = 30; // 列数
+var sw = 30, // 一个方块的宽度
+    sh = 30, // 高度
+    tr = 23, // 行数
+    td = 33; // 列数
 
 var snake = null, // 蛇的实例
     food = null, // 食物的实例
@@ -166,11 +166,7 @@ Snake.prototype.strategies = {
             this.tail.remove();
             this.tail = this.tail.last;
             this.pos.pop();
-
         }
-
-
-
     },
     eat: function () {
         this.strategies.move.call(this, true);
@@ -212,17 +208,12 @@ function createFood() {
         } else {
             food.create();
         }
-
     }
-
 }
-
-
 // 创建游戏逻辑
 function Game() {
     this.timer = null;
     this.score = 0;
-
 }
 Game.prototype.init = function () {
     snake.init();
@@ -238,6 +229,15 @@ Game.prototype.init = function () {
             snake.direction = snake.directionNum.right;
         } else if (ev.which == 40 && snake.direction != snake.directionNum.up) {
             snake.direction = snake.directionNum.down;
+        } else if (ev.which == 32) {
+            if (pauseBtn.parentNode.style.display == 'block') {
+                game.start();
+                pauseBtn.parentNode.style.display = 'none';
+
+            } else {
+                game.pause();
+                pauseBtn.parentNode.style.display = 'block';
+            }
         }
     }
 
@@ -257,14 +257,12 @@ Game.prototype.pause = function () {
 }
 Game.prototype.over = function () {
     clearInterval(this.timer);
-    alert('你的得分为：' + this.score);
-
+    alert('你的得分为：' + Score);
     // 游戏回到最初始的状态
     var snakeWrap = document.getElementById('snakeWrap');
     snakeWrap.innerHTML = '';
     snake = new Snake();
     game = new Game();
-
     var startBtnWrap = document.querySelector('.startBtn');
     startBtnWrap.style.display = 'block';
 }
@@ -272,12 +270,7 @@ Game.prototype.over = function () {
 
 // 开启游戏
 game = new Game();
-
 var startBtn = document.querySelector('.startBtn button');
-startBtn.onclick = function () {
-    startBtn.parentNode.style.display = 'none';
-    game.init();
-}
 
 // 暂停游戏
 var snakeWrap = document.getElementById('snakeWrap');
@@ -289,4 +282,25 @@ snakeWrap.onclick = function () {
 pauseBtn.onclick = function () {
     game.start();
     pauseBtn.parentNode.style.display = 'none';
+}
+
+var score = document.getElementById("score"),
+    scorer = null,
+    Score = 1000;
+
+startBtn.onclick = function () {
+    startBtn.parentNode.style.display = 'none';
+    game.init();
+    scorer = setInterval(function () {
+        Score--;
+        if (Score > 99) {
+            score.innerText = Score;
+        } else if (Score > 9) {
+            score.innerText = "0" + Score;;
+        } else if (Score > 0) {
+            score.innerText = "00" + Score;;
+        } else {
+            score.innerText = "000";;
+        }
+    }, 1000)
 }
