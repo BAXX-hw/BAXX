@@ -1,5 +1,5 @@
 $(function () {
-    $('.loginBtn button').on('click', function () {
+    $('.loginBtn').on('click', function () {
         $('.pop_wrap').show();
         $('.login_tab').show();
     })
@@ -7,7 +7,7 @@ $(function () {
         $('.pop_wrap').hide();
         $('.login_tab').hide();
     })
-    $('.registerBtn button').on('click', function () {
+    $('.registerBtn').on('click', function () {
         $('.pop_wrap').show();
         $('.register_tab').show();
     })

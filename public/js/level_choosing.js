@@ -4,7 +4,7 @@ $(function () {
     }
     console.log(form.username);
 
-    $('.avatar button').on('click', function () {
+    $('.avatar').on('click', function () {
         $.ajax({
             type: 'get',
             url: '/user_info_load',
@@ -16,6 +16,7 @@ $(function () {
                 // console.log(data.searching.length);
                 let heads = new Array("昵称：", "性别：", "个人简介：");
                 let bodys = new Array(data.searching[0].P_nickname, data.searching[0].P_gender, data.searching[0].P_signature);
+                let classes = new Array("name","gender","intro")
                 for (let i = 0; i < 3; i++) {
                     let tr = document.createElement('tr');
                     let td = new Array;
@@ -24,6 +25,7 @@ $(function () {
                     }
                     td[0].innerHTML = heads[i];
                     td[1].innerHTML = bodys[i];
+                    td[1].setAttribute("class",classes[i]);
 
                     for (let j = 0; j < 2; j++) {
                         tr.append(td[j]);
@@ -41,7 +43,7 @@ $(function () {
     $('.avatar_close').on('click', function () {
         $('.avatar_tab').hide();
     })
-    $('.announcement button').on('click', function () {
+    $('.announcement').on('click', function () {
         $.ajax({
             type: 'get',
             url: '/user_ann_load',
@@ -86,7 +88,7 @@ $(function () {
         $('.announcement_tab').hide();
         $('.seeBtn_tab').hide();
     })
-    $('.ranking_list button').on('click', function () {
+    $('.ranking_list').on('click', function () {
         $.ajax({
             type: 'get',
             url: '/user_rank_load',
@@ -143,7 +145,7 @@ $(function () {
     $('.ranking_close').on('click', function () {
         $('.ranking_tab').hide();
     })
-    $('.feedback button').on('click', function () {
+    $('.feedback').on('click', function () {
         $('.feedback_tab').show();
     })
     $('.commit button').on('click', function () {
@@ -176,19 +178,27 @@ $(function () {
     $('.feedback_close').on('click', function () {
         $('.feedback_tab').hide();
     })
-    $('.setting button').on('click', function () {
+    $('.setting').on('click', function () {
         $('.setting_tab').show();
     })
     $('.setting_close').on('click', function () {
         $('.setting_tab').hide();
     })
-    $('.compile button').on('click', function () {
-        $("h").replaceWith(document.createElement("input"));
-        $("p").replaceWith(document.createElement("textarea"));
+    $('.compile').on('click', function () {
+        $(".name").replaceWith(document.createElement("input"));
+        $(".gender").replaceWith(document.createElement("select"));
+        $(".intro").replaceWith(document.createElement("textarea"));
         this.style.visibility = "hidden";
-    });
-
-    $('.seeBtn_close').on('click', function () {
+    })
+    $('.save').on('click', function () {
+        $("input").replaceWith(document.createElement("h"));
+        $("select").replaceWith(document.createElement("h"));
+        $("textarea").replaceWith(document.createElement("h"));
+    })
+    $('.seeBtn').on('click', function () {
+        $('.seeBtn_tab').show();
+    })
+    $('.seeBtn_close').on('click', function () {   
         $('.seeBtn_tab').hide();
     })
 })
