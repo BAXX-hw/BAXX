@@ -22,26 +22,7 @@
         <div class="pop_head">
             <div class="closeBtn avatar_close"></div>
         </div>
-        <table id="avatar-table" font-color="red">
-            <tr>
-                <td width="200px" height="30px">昵 称:</td>
-                <td>
-                    <h>无敌小仙女</h>
-                </td>
-            </tr>
-            <tr>
-                <td height="30px">性 别:</td>
-                <td>
-                    <h>女</h>
-                </td>
-            </tr>
-            <tr>
-                <td height="85px">个人简介:</td>
-                <td>
-                    <p>这个人很懒</p>
-                </td>
-            </tr>
-        </table>
+        <table id="avatar-table"></table>
         <div class="admBtn">
             <div class="btn compile"><button></button></div>
         </div>
@@ -51,40 +32,39 @@
             <div class="closeBtn announcement_close"></div>
         </div>
         <table id="ann-table" border="1">
-            <tr class="headers">
-                <th width="120px">标题</th>
-                <th>公告内容</th>
-                <th width="50px">操作</th>
-            </tr>
-            <tr>
-                <td>我是标题</td>
-                <td>八百标兵奔北坡,炮兵并排北边跑。 炮兵怕把标兵碰,标兵怕碰炮兵炮。</td>
-                <td><div class="btn seeBtn"><button>查看</button></div></td>
-            </tr>
+            <thead>
+                <tr class="headers">
+                    <th width="120px">标题</th>
+                    <th>公告内容</th>
+                    <th width="50px">操作</th>
+                </tr>
+            </thead>
+            <tbody id="ann_body"></tbody>
         </table>
     </div>
     <div class="seeBtn_tab">
         <div class="pop_head">
             <div class="closeBtn seeBtn_close"></div>
         </div>
-        <div class="ann-txt">八百标兵奔北坡,炮兵并排北边跑。 炮兵怕把标兵碰,标兵怕碰炮兵炮。</div>
+        <div class="ann-txt"></div>
     </div>
     <div class="pop_tab ranking_tab">
         <div class="pop_head">
             <div class="closeBtn ranking_close"></div>
         </div>
-        <table id="rank-table" border="1">
-            <tr>
-                <th>排名</th>
-                <th>用户名</th>
-                <th>积分</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>无敌小仙女</td>
-                <td>99</td>
-            </tr>
-        </table>
+        <div class="rank_content">
+            <table class="rank-table" id="rank-table" border="1">
+                <thead>
+                    <tr>
+                        <th>排名</th>
+                        <th>用户名</th>
+                        <th>积分</th>
+                    </tr>
+                </thead>
+                <tbody id="rank_body"></tbody>
+            </table>
+            <table class="rank-table" id="rank_self"></table>
+        </div>
     </div>
     <div class="pop_tab feedback_tab">
         <div class="pop_head">

@@ -5,6 +5,7 @@ var userSQL = require('./db/UserSQL');
 var playerbasicinfoSQL = require('./db/PlayerBasicInfoSQL');
 var playergameinfoSQL = require('./db/PlayerGameInfoSQL');
 var announcementSQL = require('./db/AnnouncementSQL');
+var feedbackSQL = require('./db/FeedbackSQL')
 var express = require('express');
 var app = express();
 
@@ -104,7 +105,7 @@ app.post('/admlogin', function (req, res) {
             // 以json形式，把操作结果返回给前台页面
             if (typeof data === 'undefined') {
                 res.json({
-                    code: '500',
+                    code: 500,
                     msg: '登录失败'
                 });
             } else {
@@ -157,7 +158,7 @@ app.post('/reg', function (req, res) {
                         }
                     }
                 })
-                connection.query(playerbasicinfoSQL.insert, [UserName, '一个萌新', '来自天外','这个用户很懒，什么也没有留下'], function (err, result) {
+                connection.query(playerbasicinfoSQL.insert, [UserName, '一个萌新', '来自天外', '这个用户很懒，什么也没有留下'], function (err, result) {
                     if (err) {
                         data.err = err;
                         data.result = {
@@ -195,7 +196,7 @@ app.post('/reg', function (req, res) {
             // 以json形式，把操作结果返回给前台页面
             if (typeof data === 'undefined') {
                 res.json({
-                    code: '500',
+                    code: 500,
                     msg: '登录失败'
                 });
             } else {
@@ -246,7 +247,7 @@ app.post('/login', function (req, res) {
             // 以json形式，把操作结果返回给前台页面
             if (typeof data === 'undefined') {
                 res.json({
-                    code: '500',
+                    code: 500,
                     msg: '登录失败'
                 });
             } else {
@@ -265,11 +266,11 @@ app.get('/searchname', function (req, res) {
         let param = req.query;
         let UserName = '%' + param.search + '%';
 
-        let searchSQL=`SELECT a.*, SUM(b.P_score) AS totalScore 
+        let searchSQL = `SELECT a.*, SUM(b.P_score) AS totalScore 
                        FROM PlayerBasicInfo a INNER JOIN PlayerGameInfo b ON a.username=b.username 
                        WHERE a.username LIKE ? 
                        GROUP BY b.username` ;
-        
+
         connection.query(searchSQL, UserName, function (err, result) {
             let data = {};
             if (err) {
@@ -284,13 +285,13 @@ app.get('/searchname', function (req, res) {
                 data.searching = result;
                 data.result = {
                     code: 200,
-                    msg:'查询成功'
+                    msg: '查询成功'
                 }
             }
 
             if (typeof data === 'undefined') {
                 res.json({
-                    code: '500',
+                    code: 500,
                     msg: '登录失败'
                 });
             } else {
@@ -321,13 +322,13 @@ app.get('/ann_add', function (req, res) {
                 // console.log(result);
                 data.result = {
                     code: 200,
-                    msg:'插入成功'
+                    msg: '插入成功'
                 }
             }
 
             if (typeof data === 'undefined') {
                 res.json({
-                    code: '500',
+                    code: 500,
                     msg: '插入失败'
                 });
             } else {
@@ -355,14 +356,14 @@ app.get('/ann_load', function (req, res) {
                 data.searching = result;
                 data.result = {
                     code: 200,
-                    msg:'查询成功'
+                    msg: '查询成功'
                 }
             }
 
             if (typeof data === 'undefined') {
                 res.json({
-                    code: '500',
-                    msg: '登录失败'
+                    code: 500,
+                    msg: '查询失败'
                 });
             } else {
                 res.json(data);
@@ -391,14 +392,176 @@ app.get('/ann_del', function (req, res) {
                 // console.log(result);
                 data.result = {
                     code: 200,
-                    msg:'删除成功'
+                    msg: '删除成功'
                 }
             }
 
             if (typeof data === 'undefined') {
                 res.json({
-                    code: '500',
-                    msg: '登录失败'
+                    code: 500,
+                    msg: '删除失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/user_info_load', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let username = param.username;
+
+        connection.query(playerbasicinfoSQL.getUserByNameExact, username, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '查询失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.searching = result;
+                data.result = {
+                    code: 200,
+                    msg: '查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '查询失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/user_ann_load', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        connection.query(announcementSQL.queryAllByTime, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '查询失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.searching = result;
+                data.result = {
+                    code: 200,
+                    msg: '查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '查询失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/user_rank_load', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let username = param.username;
+
+        let searchSQL = `SELECT a.username, SUM(b.P_score) AS totalScore 
+                       FROM PlayerBasicInfo a INNER JOIN PlayerGameInfo b ON a.username=b.username
+                       GROUP BY b.username
+                       ORDER BY totalScore DESC` ;
+
+        connection.query(searchSQL, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '查询失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.searching = result.slice(0,10);
+                for (let i = 0; i< result.length; i++ )
+                {
+                    if (result[i].username == username)
+                    {
+                        data.rank_self = {
+                            ranking : i+1,
+                            username : username,
+                            totalScore : result[i].totalScore
+                        }
+                    }
+                }
+                // data.searching.push()
+                data.result = {
+                    code: 200,
+                    msg: '查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '查询失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/feedback_add', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let Detail = param.detail;
+        let Username = param.username;
+
+        connection.query(feedbackSQL.insert, [Detail, Username], function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '插入失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.result = {
+                    code: 200,
+                    msg: '插入成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '插入失败'
                 });
             } else {
                 res.json(data);

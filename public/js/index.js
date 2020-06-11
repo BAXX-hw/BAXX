@@ -27,6 +27,7 @@ $(function () {
             success: function (data) {
                 // console.log(data);
                 if (data.isLogin) {
+                    localStorage.setItem('username',form.username);
                     window.location.href = 'level_choosing';
                 }
                 else {

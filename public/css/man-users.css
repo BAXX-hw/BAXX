@@ -57,7 +57,6 @@
     background-color: rgb(255, 255, 255);
     color: rgb(0, 132, 255);
 }
-}
 
 #mym-users-table tr.headers, #m-users-table tr:hover {
     /* 表头及鼠标移动过 tr 时添加背景 */
