@@ -2,9 +2,14 @@ $(function () {
     let form = {
         username: localStorage.getItem('username')
     }
-    console.log(form.username);
 
     $('.avatar').on('click', function () {
+        avatar_load();
+        $('.pop_wrap').show();
+        $('.avatar_tab').show();
+    })
+
+    function avatar_load(){
         $.ajax({
             type: 'get',
             url: '/user_info_load',
@@ -16,7 +21,7 @@ $(function () {
                 // console.log(data.searching.length);
                 let heads = new Array("昵称：", "性别：", "个人简介：");
                 let bodys = new Array(data.searching[0].P_nickname, data.searching[0].P_gender, data.searching[0].P_signature);
-                let classes = new Array("name","gender","intro")
+                let classes = new Array("name", "gender", "intro")
                 for (let i = 0; i < 3; i++) {
                     let tr = document.createElement('tr');
                     let td = new Array;
@@ -25,7 +30,7 @@ $(function () {
                     }
                     td[0].innerHTML = heads[i];
                     td[1].innerHTML = bodys[i];
-                    td[1].setAttribute("class",classes[i]);
+                    td[1].setAttribute("class", classes[i]);
 
                     for (let j = 0; j < 2; j++) {
                         tr.append(td[j]);
@@ -33,14 +38,25 @@ $(function () {
                     result.append(tr);
                 }
                 $('#avatar-table').replaceWith(result);
+
+                let admbtn = document.createElement('div');
+                admbtn.setAttribute('class', 'admBtn');
+                let compilebtn = document.createElement('div');
+                compilebtn.setAttribute('class', 'btn compile');
+                let btn = document.createElement('button');
+                btn.setAttribute('type', 'button');
+                compilebtn.append(btn);
+                admbtn.append(compilebtn);
+                $('.admBtn').replaceWith(admbtn);
             },
             error: function (err) {
                 console.log(err);
             }
         })
-        $('.avatar_tab').show();
-    })
+    }
+
     $('.avatar_close').on('click', function () {
+        $('.pop_wrap').hide();
         $('.avatar_tab').hide();
     })
     $('.announcement').on('click', function () {
@@ -82,9 +98,11 @@ $(function () {
                 console.log(err);
             }
         })
+        $('.pop_wrap').show();
         $('.announcement_tab').show();
     })
     $('.announcement_close').on('click', function () {
+        $('.pop_wrap').hide();
         $('.announcement_tab').hide();
         $('.seeBtn_tab').hide();
     })
@@ -115,11 +133,11 @@ $(function () {
                 }
 
                 $('#rank_body').replaceWith(result);
-                
+
                 let result_self = document.createElement("table");
                 result_self.setAttribute("class", "rank-table")
                 result_self.setAttribute("id", "rank_self");
-                result_self.setAttribute("border","1");
+                result_self.setAttribute("border", "1");
                 let tr = document.createElement('tr');
                 let td = new Array;
                 for (let j = 0; j < 3; j++) {
@@ -140,25 +158,26 @@ $(function () {
                 console.log(err);
             }
         })
+        $('.pop_wrap').show();
         $('.ranking_tab').show();
     })
     $('.ranking_close').on('click', function () {
+        $('.pop_wrap').hide();
         $('.ranking_tab').hide();
     })
     $('.feedback').on('click', function () {
+        $('.pop_wrap').show();
         $('.feedback_tab').show();
     })
     $('.commit button').on('click', function () {
         let detail = $('.feedback-txt').val();
-        if (detail == "")
-        {
-            alert ("留言内容不能为空！");
+        if (!detail) {
+            alert("留言内容不能为空！");
         }
-        else
-        {
+        else {
             let feedback = {
-                detail : detail,
-                username : form.username
+                detail: detail,
+                username: form.username
             }
             $.ajax({
                 type: 'get',
@@ -176,29 +195,96 @@ $(function () {
 
     })
     $('.feedback_close').on('click', function () {
+        $('.pop_wrap').hide();
         $('.feedback_tab').hide();
     })
     $('.setting').on('click', function () {
+        $('.pop_wrap').show();
         $('.setting_tab').show();
     })
     $('.setting_close').on('click', function () {
+        $('.pop_wrap').hide();
         $('.setting_tab').hide();
     })
-    $('.compile').on('click', function () {
-        $(".name").replaceWith(document.createElement("input"));
-        $(".gender").replaceWith(document.createElement("select"));
-        $(".intro").replaceWith(document.createElement("textarea"));
-        this.style.visibility = "hidden";
+    $('body').on('click', '.compile', function () {
+        let nametd = document.createElement("td");
+        let name = document.createElement("input");
+        name.setAttribute('id', 'nickname');
+        let username = $('.name')[0].innerHTML;
+        name.setAttribute('value', username);
+        nametd.append(name);
+        $(".name").replaceWith(nametd);
+
+        let gendertd = document.createElement("td");
+        let gender = document.createElement("select");
+        gender.setAttribute('id', 'gender');
+        let man = document.createElement("option");
+        man.setAttribute('value', '男');
+        man.innerHTML = "男";
+        let woman = document.createElement("option");
+        woman.setAttribute('value', '女');
+        woman.innerHTML = "女";
+        gender.append(man);
+        gender.append(woman);
+        gendertd.append(gender);
+        $(".gender").replaceWith(gendertd);
+
+        let introtd = document.createElement("td");
+        let intro = document.createElement("textarea");
+        intro.setAttribute('id', 'intro');
+        let detail = $('.intro')[0].innerHTML;
+        intro.innerHTML = detail;
+        introtd.append(intro);
+        $(".intro").replaceWith(introtd);
+
+        let admbtn = document.createElement('div');
+        admbtn.setAttribute('class', 'admBtn');
+        let savebtn = document.createElement('div');
+        savebtn.setAttribute('class', 'btn save');
+        let btn = document.createElement('button');
+        btn.setAttribute('type', 'button');
+        savebtn.append(btn);
+        admbtn.append(savebtn);
+        $('.admBtn').replaceWith(admbtn);
     })
-    $('.save').on('click', function () {
-        $("input").replaceWith(document.createElement("h"));
-        $("select").replaceWith(document.createElement("h"));
-        $("textarea").replaceWith(document.createElement("h"));
+
+    $('body').on('click', '.save', function () {
+        let nickname = $('#nickname').val();
+        let gender = $('#gender').val();
+        let signature = $('#intro').val();
+
+        if (!nickname){
+            alert("昵称不能为空！");
+        }
+        else if (!gender){
+            alert("性别不能为空！");
+        }
+        else if (!signature) {
+            alert("个性签名不能为空！");
+        }
+        else {
+            let info = {
+                nickname: nickname,
+                gender: gender,
+                signature: signature,
+                username: form.username
+            }
+            $.ajax({
+                type: 'get',
+                url: '/user_info_update',
+                data: info,
+                success: function (data) {
+                    alert("修改成功！");
+                    avatar_load();
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
     })
-    $('.seeBtn').on('click', function () {
-        $('.seeBtn_tab').show();
-    })
-    $('.seeBtn_close').on('click', function () {   
+
+    $('.seeBtn_close').on('click', function () {
         $('.seeBtn_tab').hide();
     })
 })

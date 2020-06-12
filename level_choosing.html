@@ -18,15 +18,19 @@
         <div class="btn feedback"><button></button></div>
         <div class="btn setting"><button></button></div>
     </div>
+    <div class="pop_wrap"></div>
     <div class="pop_tab avatar_tab">
         <div class="pop_head">
             <div class="closeBtn avatar_close"></div>
         </div>
-        <table id="avatar-table"></table>
-        <div class="admBtn">
+        <div class="avatar_content">
+            <table id="avatar-table"></table>
+            <div class="admBtn"></div>
+        </div>
+        <!-- <div class="admBtn">
             <div class="btn save"><button></button></div>
             <div class="btn compile"><button></button></div>    
-        </div>
+        </div> -->
     </div>
     <div class="pop_tab announcement_tab">
         <div class="pop_head">
@@ -71,7 +75,7 @@
         <div class="pop_head">
             <div class="closeBtn feedback_close"></div>
         </div>
-        <div>
+        <div class="feedback_content">
             <textarea class="feedback-txt" placeholder="添加内容....."></textarea>
             <div class="btn commit"><button></button></div>
         </div>
@@ -105,8 +109,5 @@
     </div>
     <script src="public/js/level_choosing.js"></script>
 </body>
-<select>
-    <option value="volvo">男</option>
-    <option value="saab">女</option>
-</select>
+
 </html>

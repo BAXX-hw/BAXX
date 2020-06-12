@@ -711,3 +711,42 @@ app.get('/feedback_del', function (req, res) {
         })
     })
 })
+
+app.get('/user_info_update', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let NickName = param.nickname;
+        let Gender = param.gender;
+        let Signature = param.signature;
+        let UserName = param.username;
+
+        connection.query(playerbasicinfoSQL.updatePlayerBasicInfo, [NickName, Gender, Signature, UserName], function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '修改失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.result = {
+                    code: 200,
+                    msg: '修改成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '修改失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
