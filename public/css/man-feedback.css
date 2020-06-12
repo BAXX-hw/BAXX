@@ -32,23 +32,109 @@ img {
     width: 25px;
     height: 25px;
 }
-.button{
+
+.seeBtn {
+    background-image: linear-gradient(rgb(214, 214, 214),rgb(161, 161, 161));
+    border: none;
+    width: 50px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toReadBtn{
     background-image: linear-gradient(rgb(84, 192, 11),rgb(29, 119, 29));
     border: none;
     width: 80px;
     height: 35px;
     border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
-.button1 {
+.toUnreadBtn{
+    background-image: linear-gradient(rgb(247, 114, 114),rgb(192, 4, 4));
+    border: none;
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.delBtn {
     background-image: linear-gradient(rgb(247, 114, 114),rgb(192, 4, 4));
     border: none;
     width: 50px;
     margin-left: 10px;
     height: 35px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 button:hover {
     opacity: 0.8;
+}
+
+.pop_wrap {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 1000;
+}
+
+.pop_tab {
+    position: fixed;
+    width: 60%;
+    left: 20%;
+    height: 380px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    display: none;
+    z-index: 9999;
+    -webkit-animation: animatezoom 1s;
+    animation: animatezoom 1s
+}
+
+.feedback_detail {
+    padding: 0 5% 5% 5%;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.pop_head {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 12%;
+    padding: 0 15px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.closeBtn {
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+    /* width: 9%;
+    height: 100%; */
+    cursor: pointer;
+}
+
+.closeBtn:hover, .closeBtn:focus{
+    color: red;
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
 }

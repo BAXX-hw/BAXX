@@ -116,6 +116,16 @@ button:hover {
     border-radius: 4px;
 }
 
+.delbtn {
+    background-image: linear-gradient(rgb(247, 114, 114),rgb(192, 4, 4));
+    border: none;
+    width: 50px;
+    margin-left: 10px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* 关闭 */
 .closecontainer {
     text-align: center;

@@ -502,15 +502,13 @@ app.get('/user_rank_load', function (req, res) {
             }
             else {
                 // console.log(result);
-                data.searching = result.slice(0,10);
-                for (let i = 0; i< result.length; i++ )
-                {
-                    if (result[i].username == username)
-                    {
+                data.searching = result.slice(0, 10);
+                for (let i = 0; i < result.length; i++) {
+                    if (result[i].username == username) {
                         data.rank_self = {
-                            ranking : i+1,
-                            username : username,
-                            totalScore : result[i].totalScore
+                            ranking: i + 1,
+                            username: username,
+                            totalScore: result[i].totalScore
                         }
                     }
                 }
@@ -562,6 +560,148 @@ app.get('/feedback_add', function (req, res) {
                 res.json({
                     code: 500,
                     msg: '插入失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/feedback_load', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        connection.query(feedbackSQL.queryAllByTime, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '查询失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.searching = result;
+                data.result = {
+                    code: 200,
+                    msg: '查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '查询失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/feedback_toUnread', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let ID = param.FeedbackID;
+
+        connection.query(feedbackSQL.updateFeedback, [0, ID], function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '修改失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.result = {
+                    code: 200,
+                    msg: '修改成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '修改失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/feedback_toRead', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let ID = param.FeedbackID;
+
+        connection.query(feedbackSQL.updateFeedback, [1, ID], function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '修改失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.result = {
+                    code: 200,
+                    msg: '修改成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '修改失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/feedback_del', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let ID = param.FeedbackID;
+
+        connection.query(feedbackSQL.deleteFeedback, ID, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '删除失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.result = {
+                    code: 200,
+                    msg: '删除成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '删除失败'
                 });
             } else {
                 res.json(data);
