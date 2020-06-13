@@ -6,12 +6,15 @@ body {
     width: 90%;
     height: 100%;
     position: absolute;
+    display: flex;
     background: url('../images/bg2.jpg') no-repeat;
 } 
 .content {
-    width: 640px;
-    height: 640px;
-    margin: 50px;
+    width: 990px;
+    height: 690px;
+    margin-top: 2.5%;
+    margin-left: 5%;
+    display: flex;
     position: absolute;
 }
 
@@ -40,15 +43,15 @@ body {
     width: 200px;
     height: 150px;
     background-image: url('../images/btn2.gif');
-    margin-left: 300px;
-    margin-top: -75px;
+    margin-left: 210px;
+    margin-top: -50px;
 }
 
 .startBtn button:hover {
     width: 210px;
     height: 157.5px;
-    margin-left: 295px;
-    margin-top: -79px;
+    margin-left: 205px;
+    margin-top: -50px;
 }
 
 .pauseBtn {
@@ -58,15 +61,15 @@ body {
 .pauseBtn button {
     width: 70px;
     height: 70px;
-    background-image: url('../images/pause.jpg');
-    margin-left: 380px;
+    background-image: url('../images/pause.png');
+    margin-left: 280px;
     margin-top: -20px;
 }
 
 #snakeWrap {
     position: absolute;
-    margin-left: 5%;
-    margin-top: -3%;
+    margin-left: 0%;
+    margin-top: 0%;
     width: 990px;
     height: 690px;
     background-color: rgb(252, 232, 238);
@@ -92,7 +95,7 @@ body {
 	width:200px;
 	height:200px;
 	border-radius:50%;
-	position:absolute;
+    position:absolute;
 	top:10%;
     left:84.2%;
     background-color: rgb(252, 232, 238);
@@ -105,7 +108,7 @@ body {
     margin-left:26%;
 }
 #scorer{
-	position:absolute;
+    position:absolute;
 	margin-top:10%;
     margin-left:33%;
 	font-size:38px;
@@ -115,7 +118,7 @@ body {
 	width:400px;
 	height:250px;
 	border-radius:0%;
-	position:absolute;
+    position:absolute;
 	top:48%;
     left:78%;
     background-color: rgb(252, 232, 238);
@@ -127,4 +130,52 @@ body {
     color: rgb(255, 104, 187);
     margin-top:5%;
     margin-left:42%;
+}
+
+#ptxt{
+	margin-top:10%;
+    margin-left:33%;
+	font-size:38px;
+}
+
+/*弹出层*/
+#popBox {
+    display: none;
+    background-color: #c0dbfa;
+    border: 10px solid #83a9fa;
+    z-index: 11;
+    width: 400px;
+    height: 280px;
+    position:fixed;
+    top:0;
+    left:24%;
+    bottom:0;
+    margin:auto;
+}
+
+.name2{
+    font-size: 28px;
+    color: #2465f1;
+    margin-top:18%;
+    margin-bottom: 15%;
+    margin-left:22%;
+}
+.admBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute; 
+}
+
+.return button {
+    width: 170px;
+    height: 65px;
+    left:5%;
+    background-image: url('../images/return.png');
+}
+.again button {
+    width: 170px;
+    height: 65px;
+    left: 55%;
+    background-image: url('../images/again.png');
 }

@@ -107,14 +107,12 @@ Snake.prototype.getNextPos = function () {
     });
     if (selfCollied) {
         console.log('撞到了自己');
-
         this.strategies.die.call(this);
         return;
     }
     // 下个点是围墙，游戏结束
     if (nextPos[0] < 0 || nextPos[1] < 0 || nextPos[0] > td - 1 || nextPos[1] > tr - 1) {
         console.log('撞到了墙');
-
         this.strategies.die.call(this);
         return;
     }
@@ -126,7 +124,6 @@ Snake.prototype.getNextPos = function () {
         this.strategies.eat.call(this);
         return;
     }
-
 
     // 下个点什么都不是，走
     this.strategies.move.call(this);
@@ -240,9 +237,7 @@ Game.prototype.init = function () {
             }
         }
     }
-
     this.start();
-
 }
 
 Game.prototype.start = function () {
@@ -255,18 +250,24 @@ Game.prototype.start = function () {
 Game.prototype.pause = function () {
     clearInterval(this.timer);
 }
+// 游戏结束
 Game.prototype.over = function () {
     clearInterval(this.timer);
-    alert('你的得分为：' + Score);
-    // 游戏回到最初始的状态
-    var snakeWrap = document.getElementById('snakeWrap');
-    snakeWrap.innerHTML = '';
-    snake = new Snake();
-    game = new Game();
-    var startBtnWrap = document.querySelector('.startBtn');
-    startBtnWrap.style.display = 'block';
+    clearInterval(scorer);
+    var a = score.innerText;
+    var node1 = document.createTextNode(a);
+    var node2 = document.createElement("font");
+    node2.appendChild(node1);
+    document.getElementById("back").appendChild(node2);
+    var popBox = document.getElementById("popBox");
+    popBox.style.display = "block";  
 }
-
+$('.return').on('click', function () {
+    window.location.href = "level_choosing.html"
+})
+$('.again').on('click', function () {
+    window.location.href = "level1.html"
+})
 
 // 开启游戏
 game = new Game();
@@ -304,3 +305,4 @@ startBtn.onclick = function () {
         }
     }, 1000)
 }
+
