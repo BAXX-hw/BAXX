@@ -114,27 +114,23 @@ body {
     display: none;
     background-color: #c0dbfa;
     border: 10px solid #83a9fa;
-    z-index: 11;
     width: 400px;
     height: 280px;
-    position:fixed;
-    top:0;
-    left:24%;
+    position:absolute;
+    top:30%;
+    left:30%;
     bottom:0;
-    margin:auto;
 }
 #popBox2 {
     display: none;
     background-color: #c0dbfa;
     border: 10px solid #83a9fa;
-    z-index: 11;
     width: 400px;
     height: 280px;
-    position:fixed;
-    top:0;
-    left:24%;
+    position:absolute;
+    top:30%;
+    left:30%;
     bottom:0;
-    margin:auto;
 }
 
 .name2{
