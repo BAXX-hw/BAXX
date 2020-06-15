@@ -5,8 +5,23 @@ var sw = 30, // 一个方块的宽度
 
 var snake = null, // 蛇的实例
     food = null, // 食物的实例
+    foodArr = [],
+    randomIdx = ['a', 'b', 'c'],
     game = null; // 游戏实例
 
+// 问题
+var ques = [{
+    text: '2 + 3 = ？',
+    option: [5, 6, 7],
+    anwser: 'a'
+}, {
+
+    text: '4 + 3 = ?',
+    option: [9, 6, 7],
+    anwser: 'c'
+}];
+var progress = 0; // 答题进度
+var level = 1; // 题数
 // 方块构造函数
 function Square(x, y, classname) {
     this.x = x * sw;
@@ -106,27 +121,35 @@ Snake.prototype.getNextPos = function () {
         }
     });
     if (selfCollied) {
-        console.log('撞到了自己');
-
         this.strategies.die.call(this);
         return;
     }
     // 下个点是围墙，游戏结束
     if (nextPos[0] < 0 || nextPos[1] < 0 || nextPos[0] > td - 1 || nextPos[1] > tr - 1) {
-        console.log('撞到了墙');
-
         this.strategies.die.call(this);
         return;
     }
 
     // 下个点是食物，吃
-    if (food && food.pos[0] == nextPos[0] && food.pos[1] == nextPos[1]) {
-        // 如果这个条件成立说明现在蛇头要走的下一个点是食物的那个点；
-        console.log('吃到食物了');
-        this.strategies.eat.call(this);
-        return;
-    }
+    foodArr.forEach(food => {
+        // console.log('food===', food);
 
+        if (food.pos[0] == nextPos[0] && food.pos[1] == nextPos[1]) {
+            console.log('撞到食物了:', food.type);
+            // 判断一下答题有没有对
+            var nowAnswer = ques[progress]['anwser'];
+            if (nowAnswer !== food.type) {
+                this.strategies.move.call(this);
+                createFood();
+                setTimeout(() => {
+                    this.strategies.die();
+                }, 0);
+                return;
+            }
+            this.strategies.eat.call(this, food);
+            return;
+        }
+    });
 
     // 下个点什么都不是，走
     this.strategies.move.call(this);
@@ -171,6 +194,7 @@ Snake.prototype.strategies = {
     eat: function () {
         this.strategies.move.call(this, true);
         createFood();
+        switchQues();
         game.score++;
     },
     die: function () {
@@ -183,32 +207,77 @@ snake = new Snake();
 
 // 创建食物
 function createFood() {
-    // 食物的随机坐标
-    var x = null;
-    var y = null;
-    var include = true; // 循环跳出的条件,true表示食物坐标在蛇身上，false:表示不在
-    while (include) {
-        x = Math.round(Math.random() * (td - 1));
-        y = Math.round(Math.random() * (tr - 1));
+    //生成食物
+    foodArr = [];
+    randomIdx.forEach(item => {
+        //食物小方块的随机坐标
+        var x = null;
+        var y = null;
 
-        snake.pos.forEach(function (value) {
-            if (x != value[0] && y != value[1]) {
-                // 坐标不在蛇身上
-                include = false;
-            }
-        })
-        // 生成食物
-        food = new Square(x, y, 'food');
-        food.pos = [x, y]; // 存储食物的坐标，用于跟蛇头下一个走的点作对比
+        var include = true;	//循环跳出的条件，true表示食物的坐标在蛇身上（需要继续循环）。false表示食物的坐标不在蛇身上（不循环了）
+        while (include) {
+            x = Math.round(Math.random() * (td - 1));
+            y = Math.round(Math.random() * (tr - 1));
 
-        var foodDom = document.querySelector('.food');
+            snake.pos.forEach(function (value) {
+                if (x != value[0] && y != value[1]) {
+                    //这个条件成立说明现在随机出来的这个坐标，在蛇身上并没有找到。
+                    include = false;
+                }
+            });
+        }
+        var randomCls = `food_${item}`;
+        food = new Square(x, y, randomCls);
+        food.pos = [x, y];
+        food.type = item;
+        foodArr.push(food);
+
+        var foodDom = document.querySelector(`.${randomCls}`);
         if (foodDom) {
             foodDom.style.left = x * sw + 'px';
             foodDom.style.top = y * sh + 'px';
         } else {
             food.create();
         }
+    });
+}
+
+function switchQues(isInit) {
+    if (!isInit) {
+        if (progress === ques.length - 1) {
+            level += 1;
+            if (level > 2) {
+                setTimeout(() => {
+					alert('通关啦！');
+				}, 0);
+			} else {
+                game.pause();
+                clearInterval(this.timer);
+                clearInterval(scorer);
+                var a = score.innerText;
+                var node1 = document.createTextNode(a);
+                var node2 = document.createElement("font");
+                node2.appendChild(node1);
+                document.getElementById("back").appendChild(node2);
+                var popBox = document.getElementById("popBox1");
+                popBox.style.display = "block";
+            }
+            progress = 0;
+        } else {
+            progress++;
+        }
     }
+    var quesTextDom = document.querySelector('.quesText');
+    var optionsDom = document.querySelector('.options');
+    var nowQues = ques[progress]['text'];
+    var nowOpts = ques[progress]['option'];
+
+    quesTextDom.innerText = nowQues;
+    console.log('optionsDom.children', optionsDom.children);
+
+    [...optionsDom.children].forEach((child, idx) => {
+        child.getElementsByTagName('i')[0].innerText = nowOpts[idx];
+    });
 }
 // 创建游戏逻辑
 function Game() {
@@ -217,6 +286,7 @@ function Game() {
 }
 Game.prototype.init = function () {
     snake.init();
+    switchQues(true);
     createFood();
 
     document.onkeydown = function (ev) {
@@ -240,33 +310,35 @@ Game.prototype.init = function () {
             }
         }
     }
-
     this.start();
-
 }
 
 Game.prototype.start = function () {
     // 开始游戏
     this.timer = setInterval(function () {
         snake.getNextPos();
-
     }, 200);
 }
 Game.prototype.pause = function () {
     clearInterval(this.timer);
 }
+// 游戏结束
 Game.prototype.over = function () {
     clearInterval(this.timer);
-    alert('你的得分为：' + Score);
-    // 游戏回到最初始的状态
-    var snakeWrap = document.getElementById('snakeWrap');
-    snakeWrap.innerHTML = '';
-    snake = new Snake();
-    game = new Game();
-    var startBtnWrap = document.querySelector('.startBtn');
-    startBtnWrap.style.display = 'block';
+    clearInterval(scorer);
+    
+    var popBox = document.getElementById("popBox2");
+    popBox.style.display = "block";
 }
-
+$('.return').on('click', function () {
+    window.location.href = "level_choosing.html"
+})
+$('.again').on('click', function () {
+    window.location.href = "level1.html"
+})
+$('.next').on('click', function () {
+    window.location.href = "level2.html"
+})
 
 // 开启游戏
 game = new Game();
@@ -304,3 +376,4 @@ startBtn.onclick = function () {
         }
     }, 1000)
 }
+

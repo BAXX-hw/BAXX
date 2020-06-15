@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="public/css/level1.css" rel="external nofollow">
+    <script src="public/js/jquery-3.5.1.min.js"></script>
     <title>贪吃蛇小游戏</title>
 </head>
 
@@ -14,16 +15,39 @@
         <div class="btn startBtn"><button></button></div>
         <div class="btn pauseBtn"><button></button></div>
         <div id="snakeWrap"></div>
+        <div id="popBox1">
+            <div class="content2">
+                <div class="name2" id="back">你的得分： </div>
+                <div class="admBtn">
+                    <div class="btn return"><button></button></div>
+                    <div class="btn next"><button></button></div>
+                </div>
+            </div>
+        </div>
+        <div id="popBox2">
+            <div class="content2">
+                <div class="name2">你的得分： 0</div>
+                <div class="admBtn">
+                    <div class="btn return"><button></button></div>
+                    <div class="btn again"><button></button></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="conscore">
         <div class="sname">你的得分</div>
-        <div id="scorer"> 
+        <div id="scorer">
             <span id="score">1000</span>
         </div>
     </div>
     <div class="conpro">
-        <div class="pname">题 目</div>
-        <div id="scorer">99 - 73 = ?</div>
+        <p class="quesTitle">题&emsp;目</p>
+		<h2 class="quesText">2 + 3 = ?</h2>
+		<h3 class="options">
+			<span>A. <i>5</i></span>
+			<span>B. <i>6</i></span>
+			<span>C. <i>7</i></span>
+		</h3>
     </div>
     <script src="public/js/level1.js"></script>
 </body>

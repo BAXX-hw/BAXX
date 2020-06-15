@@ -228,7 +228,6 @@ textarea {
     padding: 12px; 
     text-align: center;
 }
-
 #ann-table tr:hover {
     background-color: rgb(253, 237, 214);
 }
@@ -303,8 +302,8 @@ textarea {
 .feedback-txt{
     width: 420px;
     height: 260px;
-    /* margin-top: 4%; */
-    /* margin-left: 20%; */
+    margin-top: 8%;
+    margin-bottom: 5%;
     font-size: 20px; 
 }
 

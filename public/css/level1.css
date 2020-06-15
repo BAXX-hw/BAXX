@@ -6,12 +6,15 @@ body {
     width: 90%;
     height: 100%;
     position: absolute;
+    display: flex;
     background: url('../images/bg2.jpg') no-repeat;
 } 
 .content {
-    width: 640px;
-    height: 640px;
-    margin: 50px;
+    width: 990px;
+    height: 690px;
+    margin-top: 2.5%;
+    margin-left: 5%;
+    display: flex;
     position: absolute;
 }
 
@@ -40,15 +43,15 @@ body {
     width: 200px;
     height: 150px;
     background-image: url('../images/btn2.gif');
-    margin-left: 300px;
-    margin-top: -75px;
+    margin-left: 210px;
+    margin-top: -50px;
 }
 
 .startBtn button:hover {
     width: 210px;
     height: 157.5px;
-    margin-left: 295px;
-    margin-top: -79px;
+    margin-left: 205px;
+    margin-top: -50px;
 }
 
 .pauseBtn {
@@ -58,15 +61,15 @@ body {
 .pauseBtn button {
     width: 70px;
     height: 70px;
-    background-image: url('../images/pause.jpg');
-    margin-left: 380px;
+    background-image: url('../images/pause.png');
+    margin-left: 280px;
     margin-top: -20px;
 }
 
 #snakeWrap {
     position: absolute;
-    margin-left: 5%;
-    margin-top: -3%;
+    margin-left: 0%;
+    margin-top: 0%;
     width: 990px;
     height: 690px;
     background-color: rgb(252, 232, 238);
@@ -74,25 +77,20 @@ body {
 }
 
 .snakeHead {
-    background-image: url('../images/snake.jpg');
+    background-image: url('../images/shead.png');
     background-size: cover;
 }
 
 .snakeBody {
-    background-color: #f486ac;
+    background-color: #83a9fa;
     border-radius: 50%;
-}
-
-.food {
-    background: url('../images/food.jpg') no-repeat;
-    background-size: 100% 100%;
 }
  
 .conscore{
 	width:200px;
 	height:200px;
 	border-radius:50%;
-	position:absolute;
+    position:absolute;
 	top:10%;
     left:84.2%;
     background-color: rgb(252, 232, 238);
@@ -105,26 +103,109 @@ body {
     margin-left:26%;
 }
 #scorer{
-	position:absolute;
+    position:absolute;
 	margin-top:10%;
     margin-left:33%;
 	font-size:38px;
 }
 
-.conpro{
-	width:400px;
-	height:250px;
-	border-radius:0%;
-	position:absolute;
-	top:48%;
-    left:78%;
-    background-color: rgb(252, 232, 238);
-    border: 10px solid #F8BBD0;
+/*弹出层*/
+#popBox1 {
+    display: none;
+    background-color: #c0dbfa;
+    border: 10px solid #83a9fa;
+    width: 400px;
+    height: 280px;
+    position:absolute;
+    top:30%;
+    left:30%;
+    bottom:0;
+}
+#popBox2 {
+    display: none;
+    background-color: #c0dbfa;
+    border: 10px solid #83a9fa;
+    width: 400px;
+    height: 280px;
+    position:absolute;
+    top:30%;
+    left:30%;
+    bottom:0;
 }
 
-.pname{
+.name2{
     font-size: 28px;
+    color: #2465f1;
+    margin-top:18%;
+    margin-bottom: 15%;
+    margin-left:22%;
+}
+.admBtn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute; 
+}
+
+.return button {
+    width: 170px;
+    height: 65px;
+    left:5%;
+    background-image: url('../images/return.png');
+}
+.again button {
+    width: 170px;
+    height: 65px;
+    left: 55%;
+    background-image: url('../images/again.png');
+}
+.next button {
+    width: 180px;
+    height: 65px;
+    left: 55%;
+    background-image: url('../images/next.png');
+}
+.conpro{
+	width:450px;
+	height:250px;
+	border-radius:0%;
+    position:absolute;
+	top:48%;
+    left:77%;
+    background-color: rgb(252, 232, 238);
+    border: 10px solid #F8BBD0;
     color: rgb(255, 104, 187);
-    margin-top:5%;
-    margin-left:42%;
+}
+
+.conpro p{
+    margin-left:38%;
+    margin-top: 5%;
+    font-size:32px;
+}
+.conpro h2{
+    margin-left:32%;
+    margin-top: 6%;
+    font-size:38px;
+}
+.conpro h3 {
+    margin-left:13%;
+    margin-top: 8%;
+    font-size:38px;
+}
+.conpro span {
+	margin-right: 50px;
+}
+.food_a,
+.food_b,
+.food_c {
+    background-size: cover;
+}
+.food_a {
+	background-image: url('../images/a.png');
+}
+.food_b {
+	background-image: url('../images/b.png');
+}
+.food_c {
+	background-image: url('../images/c.png');
 }
