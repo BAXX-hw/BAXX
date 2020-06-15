@@ -1,3 +1,26 @@
+window.onload = function(){
+    let form = {
+        username: localStorage.getItem('username')
+    }
+
+    if (form.username === "-1") {
+        //只显示第一关
+    }
+    else {
+        $.ajax({
+            type: 'get',
+            url: '/level_load',
+            data: form,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+}
+
 $(function () {
     $('.avatar').on('click', function () {
         if (localStorage.getItem('username') === "-1") {

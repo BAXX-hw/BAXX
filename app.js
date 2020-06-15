@@ -62,6 +62,14 @@ app.get('/level1', function (req, res) {
     res.sendFile(__dirname + '/' + 'level1.html');
 })
 
+app.get('/level2', function (req, res) {
+    res.sendFile(__dirname + '/' + 'level2.html');
+})
+
+app.get('/level3', function (req, res) {
+    res.sendFile(__dirname + '/' + 'level3.html');
+})
+
 var server = app.listen(3000, function () {
     var host = server.address().address
     var port = server.address().port
@@ -745,6 +753,43 @@ app.get('/user_info_update', function (req, res) {
                 res.json({
                     code: 500,
                     msg: '修改失败'
+                });
+            } else {
+                res.json(data);
+            }
+
+            connection.release();
+        })
+    })
+})
+
+app.get('/level_load', function (req, res) {
+    pool.getConnection(function (err, connection) {
+        let param = req.query;
+        let username = param.username;
+
+        connection.query(playergameinfoSQL.getLevelByName, username, function (err, result) {
+            let data = {};
+            if (err) {
+                data.err = err;
+                data.result = {
+                    code: 500,
+                    msg: '查询失败'
+                }
+            }
+            else {
+                // console.log(result);
+                data.searching = result;
+                data.result = {
+                    code: 200,
+                    msg: '查询成功'
+                }
+            }
+
+            if (typeof data === 'undefined') {
+                res.json({
+                    code: 500,
+                    msg: '查询失败'
                 });
             } else {
                 res.json(data);
