@@ -58,6 +58,10 @@ app.get('/level_choosing', function (req, res) {
     res.sendFile(__dirname + '/' + 'level_choosing.html');
 })
 
+app.get('/level1', function (req, res) {
+    res.sendFile(__dirname + '/' + 'level1.html');
+})
+
 var server = app.listen(3000, function () {
     var host = server.address().address
     var port = server.address().port

@@ -85,4 +85,8 @@ $(function () {
             })
         }
     })
+    $('.visitorBtn').on('click', function(){
+        localStorage.setItem('username',-1);
+        window.location.href = 'level_choosing';
+    })
 })

@@ -1,15 +1,21 @@
 $(function () {
-    let form = {
-        username: localStorage.getItem('username')
-    }
-
     $('.avatar').on('click', function () {
-        avatar_load();
-        $('.pop_wrap').show();
-        $('.avatar_tab').show();
+        if (localStorage.getItem('username') === "-1") {
+            $('.pop_wrap').show();
+            $('.visitor_tab').show();
+        }
+        else {
+            avatar_load();
+            $('.pop_wrap').show();
+            $('.avatar_tab').show();
+        }
     })
 
-    function avatar_load(){
+    function avatar_load() {
+        let form = {
+            username: localStorage.getItem('username')
+        }
+
         $.ajax({
             type: 'get',
             url: '/user_info_load',
@@ -107,67 +113,82 @@ $(function () {
         $('.seeBtn_tab').hide();
     })
     $('.ranking_list').on('click', function () {
-        $.ajax({
-            type: 'get',
-            url: '/user_rank_load',
-            data: form,
-            success: function (data) {
-                // console.log(data);
-                let result = document.createElement('tbody');
-                result.setAttribute('id', 'rank_body');
-                // console.log(data.searching.length);
-                for (let i = 0; i < data.searching.length; i++) {
+        if (localStorage.getItem('username') === "-1") {
+            $('.pop_wrap').show();
+            $('.visitor_tab').show();
+        }
+        else {
+            let form = {
+                username: localStorage.getItem('username')
+            }
+            $.ajax({
+                type: 'get',
+                url: '/user_rank_load',
+                data: form,
+                success: function (data) {
+                    // console.log(data);
+                    let result = document.createElement('tbody');
+                    result.setAttribute('id', 'rank_body');
+                    // console.log(data.searching.length);
+                    for (let i = 0; i < data.searching.length; i++) {
+                        let tr = document.createElement('tr');
+                        let td = new Array;
+                        for (let j = 0; j < 3; j++) {
+                            td[j] = document.createElement('td');
+                        }
+                        td[0].innerHTML = i + 1;
+                        td[1].innerHTML = data.searching[i].username;
+                        td[2].innerHTML = data.searching[i].totalScore;
+
+                        for (let j = 0; j < 3; j++) {
+                            tr.append(td[j]);
+                        }
+                        result.append(tr);
+                    }
+
+                    $('#rank_body').replaceWith(result);
+
+                    let result_self = document.createElement("table");
+                    result_self.setAttribute("class", "rank-table")
+                    result_self.setAttribute("id", "rank_self");
+                    result_self.setAttribute("border", "1");
                     let tr = document.createElement('tr');
                     let td = new Array;
                     for (let j = 0; j < 3; j++) {
                         td[j] = document.createElement('td');
                     }
-                    td[0].innerHTML = i + 1;
-                    td[1].innerHTML = data.searching[i].username;
-                    td[2].innerHTML = data.searching[i].totalScore;
+                    td[0].innerHTML = data.rank_self.ranking;
+                    td[1].innerHTML = data.rank_self.username;
+                    td[2].innerHTML = data.rank_self.totalScore;
 
                     for (let j = 0; j < 3; j++) {
                         tr.append(td[j]);
                     }
-                    result.append(tr);
+                    result_self.append(tr);
+
+                    $('#rank_self').replaceWith(result_self);
+                },
+                error: function (err) {
+                    console.log(err);
                 }
-
-                $('#rank_body').replaceWith(result);
-
-                let result_self = document.createElement("table");
-                result_self.setAttribute("class", "rank-table")
-                result_self.setAttribute("id", "rank_self");
-                result_self.setAttribute("border", "1");
-                let tr = document.createElement('tr');
-                let td = new Array;
-                for (let j = 0; j < 3; j++) {
-                    td[j] = document.createElement('td');
-                }
-                td[0].innerHTML = data.rank_self.ranking;
-                td[1].innerHTML = data.rank_self.username;
-                td[2].innerHTML = data.rank_self.totalScore;
-
-                for (let j = 0; j < 3; j++) {
-                    tr.append(td[j]);
-                }
-                result_self.append(tr);
-
-                $('#rank_self').replaceWith(result_self);
-            },
-            error: function (err) {
-                console.log(err);
-            }
-        })
-        $('.pop_wrap').show();
-        $('.ranking_tab').show();
+            })
+            $('.pop_wrap').show();
+            $('.ranking_tab').show();
+        }
     })
     $('.ranking_close').on('click', function () {
         $('.pop_wrap').hide();
         $('.ranking_tab').hide();
     })
     $('.feedback').on('click', function () {
-        $('.pop_wrap').show();
-        $('.feedback_tab').show();
+        if (localStorage.getItem('username') === "-1") {
+            $('.pop_wrap').show();
+            $('.visitor_tab').show();
+        }
+        else {
+            $('.pop_wrap').show();
+            $('.feedback_tab').show();
+        }
     })
     $('.commit button').on('click', function () {
         let detail = $('.feedback-txt').val();
@@ -177,7 +198,7 @@ $(function () {
         else {
             let feedback = {
                 detail: detail,
-                username: form.username
+                username: localStorage.getItem('username')
             }
             $.ajax({
                 type: 'get',
@@ -199,6 +220,9 @@ $(function () {
         $('.feedback_tab').hide();
     })
     $('.setting').on('click', function () {
+        if (localStorage.getItem('username') === "-1") {
+            $('.exit').hide();
+        }
         $('.pop_wrap').show();
         $('.setting_tab').show();
     })
@@ -253,10 +277,10 @@ $(function () {
         let gender = $('#gender').val();
         let signature = $('#intro').val();
 
-        if (!nickname){
+        if (!nickname) {
             alert("昵称不能为空！");
         }
-        else if (!gender){
+        else if (!gender) {
             alert("性别不能为空！");
         }
         else if (!signature) {
@@ -267,7 +291,7 @@ $(function () {
                 nickname: nickname,
                 gender: gender,
                 signature: signature,
-                username: form.username
+                username: localStorage.getItem('username')
             }
             $.ajax({
                 type: 'get',
@@ -286,5 +310,21 @@ $(function () {
 
     $('.seeBtn_close').on('click', function () {
         $('.seeBtn_tab').hide();
+    })
+
+    $('.exit').on('click', function () {
+        let isExit = confirm("确定要退出登录吗？");
+        if (isExit) {
+            localStorage.setItem('username', -1);
+        }
+    })
+
+    $('.visitor_close').on('click', function () {
+        $('.pop_wrap').hide();
+        $('.visitor_tab').hide();
+    })
+
+    $('.toLogin').on('click', function () {
+        window.location.href = "index";
     })
 })
