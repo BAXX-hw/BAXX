@@ -1,6 +1,6 @@
-var sw = 30, // 一个方块的宽度
-    sh = 30, // 高度
-    tr = 21, // 行数
+var sw = 26, // 一个方块的宽度
+    sh = 26, // 高度
+    tr = 22, // 行数
     td = 33; // 列数
 
 var snake = null, // 蛇的实例
@@ -331,13 +331,13 @@ Game.prototype.over = function () {
     popBox.style.display = "block";
 }
 $('.return').on('click', function () {
-    window.location.href = "level_choosing.html"
+    window.location.href = "level_choosing"
 })
 $('.again').on('click', function () {
-    window.location.href = "level1.html"
+    window.location.href = "level1"
 })
 $('.next').on('click', function () {
-    window.location.href = "level2.html"
+    window.location.href = "level2"
 })
 
 // 开启游戏

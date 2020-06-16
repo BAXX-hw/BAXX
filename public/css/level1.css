@@ -9,8 +9,8 @@ body {
     background: url('../images/bg2.jpg') no-repeat;
 } 
 .content {
-    margin-top: 60px;
-    margin-left: 100px;
+    margin-top: 70px;
+    margin-left: 70px;
     width: 80%;
     height: 80%;
     display: flex;
@@ -36,16 +36,16 @@ body {
     width: 200px;
     height: 150px;
     background-image: url('../images/btn2.gif');
-    margin-left: 400px;
-    margin-top: 260px;
+    margin-left: 340px;
+    margin-top: 200px;
     display: flex;
 }
 
 .startBtn button:hover {
     width: 210px;
     height: 157.5px;
-    margin-left: 395px;
-    margin-top: 256px;
+    margin-left: 335px;
+    margin-top: 196px;
     display: flex;
 }
 
@@ -65,8 +65,8 @@ body {
     position: absolute;
     margin-left: 0%;
     margin-top: 0%;
-    width: 990px;
-    height: 630px;
+    width: 858px;
+    height: 572px;
     background-color: rgb(252, 232, 238);
     border: 20px solid #F8BBD0;
 }
@@ -87,7 +87,7 @@ body {
 	border-radius:50%;
     position:absolute;
 	top:100px;
-    left:1300px;
+    left:1150px;
     background-color: rgb(252, 232, 238);
     border: 10px solid #F8BBD0;
 } 
@@ -113,7 +113,7 @@ body {
     height: 280px;
     position:absolute;
     top:220px;
-    left:390px;
+    left:310px;
     bottom:0;
 }
 #popBox2 {
@@ -124,7 +124,7 @@ body {
     height: 280px;
     position:absolute;
     top:220px;
-    left:390px;
+    left:310px;
     bottom:0;
 }
 
@@ -136,37 +136,32 @@ body {
     margin-left:22%;
 }
 .admBtn{
-    width: 100%;
+    width: 108%;
     display: flex;
-    justify-content: center;
-    position: absolute; 
 }
 
 .return button {
     width: 170px;
     height: 65px;
-    left:5%;
     background-image: url('../images/return.png');
 }
 .again button {
     width: 170px;
     height: 65px;
-    left: 55%;
     background-image: url('../images/again.png');
 }
 .next button {
     width: 180px;
     height: 65px;
-    left: 55%;
     background-image: url('../images/next.png');
 }
 .conpro{
-	width:450px;
+	width:420px;
 	height:250px;
 	border-radius:0%;
     position:absolute;
 	top:380px;
-    left:1200px;
+    left:1050px;
     background-color: rgb(252, 232, 238);
     border: 10px solid #F8BBD0;
     color: rgb(255, 104, 187);
