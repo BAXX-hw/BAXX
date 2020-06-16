@@ -11,6 +11,7 @@ body {
     height: 100%;
     position: absolute;
     background: url('../images/bg2.jpg') no-repeat;
+    overflow: hidden;
 }
 
 .menu {
@@ -30,9 +31,14 @@ body {
     align-items: center;
 }
 
+.map_content {
+    width: fit-content;
+}
+
 .mapping {
     width: 1286px;
     height: 750px;
+    display: block;
 }
 
 .btn {
@@ -349,4 +355,18 @@ textarea {
 
 .toLogin button:hover {
     color: red;
+}
+
+.lock {
+    position: absolute;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.lock2 {
+    left: 493px;
+    top: 268px;
+    width: 60px;
+    height: 60px;
+    background-image: url('../images/lock2.png');
 }
