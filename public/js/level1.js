@@ -21,7 +21,6 @@ var ques = [{
     anwser: 'c'
 }];
 var progress = 0; // 答题进度
-var level = 1; // 题数
 // 方块构造函数
 function Square(x, y, classname) {
     this.x = x * sw;
@@ -245,23 +244,15 @@ function createFood() {
 function switchQues(isInit) {
     if (!isInit) {
         if (progress === ques.length - 1) {
-            level += 1;
-            if (level > 2) {
-                setTimeout(() => {
-					alert('通关啦！');
-				}, 0);
-			} else {
-                game.pause();
-                clearInterval(this.timer);
-                clearInterval(scorer);
-                var a = score.innerText;
-                var node1 = document.createTextNode(a);
-                var node2 = document.createElement("font");
-                node2.appendChild(node1);
-                document.getElementById("back").appendChild(node2);
-                var popBox = document.getElementById("popBox1");
-                popBox.style.display = "block";
-            }
+            game.pause();
+            clearInterval(scorer);
+            var a = score.innerText;
+            var node1 = document.createTextNode(a);
+            var node2 = document.createElement("font");
+            node2.appendChild(node1);
+            document.getElementById("back").appendChild(node2);
+            var popBox = document.getElementById("popBox1");
+            popBox.style.display = "block";
             progress = 0;
         } else {
             progress++;
@@ -326,7 +317,7 @@ Game.prototype.pause = function () {
 Game.prototype.over = function () {
     clearInterval(this.timer);
     clearInterval(scorer);
-    
+
     var popBox = document.getElementById("popBox2");
     popBox.style.display = "block";
 }
